@@ -15,6 +15,18 @@ spring:
       idle-timeout: 30000
       max-lifetime: 600000
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+    producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.JsonSerializer
+        acks: all
+        retries: 3
+        batch-size: 16384
+        linger-ms: 1
+        buffer-memory: 33554432
+
   jpa:
     hibernate:
       ddl-auto: validate
